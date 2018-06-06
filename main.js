@@ -1,29 +1,19 @@
 
 
 
-let word = "";
-let character = '';
-
-
-document.addEventListener("click", function(){
-    word += "a";
-    document.getElementById("typr").innerHTML = word;
-});
-
+let growingString = ""
 
 document.addEventListener('keypress', (event) => {
-    character = event.key;
-    if (character == ' ') {
-        word += " "
-        console.log("space pressed, word is:", word, ".");
+    // Adds non enter character to string, and writes that string to the div.
+    if (event.charCode != 13) {
+        growingString += event.key;
+        document.getElementById("typr").innerHTML = growingString;
     }
-    word += character;
-    document.getElementById("typr").innerHTML = word;
   });
 
-
 document.addEventListener('keydown', (event) => {
+    // Removes 
     if (event.key == "Backspace") {
-        alert("backspace pressed")
+        document.getElementById("typr").innerHTML = growingString.substring(0, growingString.length - 1);
     }
 });
