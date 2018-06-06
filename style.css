@@ -3,11 +3,13 @@
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
-  padding-left: 45%;
 }
 
 #typr {
-    background-color: lightblue;
+    position: absolute;
+    align-items: right;
+    text-align: right;
+    width: 50%;
     display: inline;
     /* So white space are not collapsable. Otherwise spaces don't appear. */
     white-space: pre;
