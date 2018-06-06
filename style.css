@@ -1,0 +1,7 @@
+
+#typr {
+    background-color: lightblue;
+    display: inline;
+    /* So white space are not collapsable. Otherwise spaces don't appear. */
+    white-space: pre;
+}
