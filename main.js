@@ -12,8 +12,9 @@ document.addEventListener('keypress', (event) => {
   });
 
 document.addEventListener('keydown', (event) => {
-    // Removes 
+    // Removes multiple backspaces
     if (event.key == "Backspace") {
-        document.getElementById("typr").innerHTML = growingString.substring(0, growingString.length - 1);
+        growingString = growingString.substring(0, growingString.length - 1);
+        document.getElementById("typr").innerHTML = growingString;
     }
 });
