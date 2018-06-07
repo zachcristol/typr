@@ -1,16 +1,32 @@
-.typing-text {
-  position: absolute;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  width: 100%;
+body{
+  margin: 0;
+  background-color: white;
 }
 
-#typr {
-    position: absolute;
-    align-items: right;
-    text-align: right;
-    width: 50%;
-    display: inline;
-    /* So white space are not collapsable. Otherwise spaces don't appear. */
-    white-space: pre;
+#leftTyprDiv {
+  margin: 0px;
+  position: absolute;
+  width: 50%;
+  height: 50px;
+}
+#rightTyprDiv {
+  width: 50%;
+  left: 50%;
+  display: inline;
+  position: absolute;
+  float: right;
+}
+#typrLeft {
+  font-size: 2em;
+  width: 100%;
+  color: grey;
+  position: absolute;
+  text-align: right;
+  white-space: pre;
+}
+#typrRight {
+  font-size: 2em;
+  width: 100%;
+  color: black;
+  white-space: pre;
 }
