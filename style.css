@@ -4,29 +4,44 @@ body{
 }
 
 #leftTyprDiv {
-  margin: 0px;
+  display: inline;
   position: absolute;
   width: 50%;
-  height: 50px;
+  float: left;
+  margin-left: -1000%;
 }
 #rightTyprDiv {
   width: 50%;
   left: 50%;
   display: inline;
   position: absolute;
-  float: right;
+  float: left;
 }
 #typrLeft {
+  white-space: pre;
   font-size: 2em;
-  width: 100%;
+  width: 2100%;
   color: grey;
   position: absolute;
+  text-overflow: clip;
   text-align: right;
-  white-space: pre;
 }
 #typrRight {
   font-size: 2em;
   width: 100%;
   color: black;
   white-space: pre;
+}
+#timer {
+  text-align: center;
+  display: block;
+  color: grey;
+  font-size: 2em;
+  width: 100%;
+}
+#UI-Wrapper{
+  height: 25px;
+}
+#typrWrapper{
+
 }
