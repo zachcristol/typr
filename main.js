@@ -34,10 +34,19 @@ document.addEventListener('keypress', (event) => {
     if (event.charCode != 13) {
 
         // If the user presses the correct key, add it to the left string and take it away from the right.
-        if(event.charCode==shrinkingString[0].charCodeAt(0))
-        {
+        if(event.charCode==shrinkingString[0].charCodeAt(0)){
+          growingString += shrinkingString[0];
           totalChars++;
-          growingString += event.key;
+          if(shrinkingString[0]!=undefined){
+              shrinkingStack.push(shrinkingString[0]);
+          }
+
+          // Shorten the string on the right
+          shrinkingString = shrinkingString.substring(1, shrinkingString.length);
+        }
+        // Otherwise, strike it through.
+        else{
+          growingString += shrinkingString[0].strike();
 
           if(shrinkingString[0]!=undefined){
               shrinkingStack.push(shrinkingString[0]);
@@ -55,11 +64,15 @@ document.addEventListener('keypress', (event) => {
 document.addEventListener('keydown', (event) => {
     // Removes multiple backspaces, and subtracts from the characters typed
     if (event.key == "Backspace") {
-        totalChars--;
 
-        growingString = growingString.substring(0, growingString.length - 1);
+        // Check for a strikethrough on the character, because those are removed differently.
+        if(growingString[growingString.length-1]==">"){
+          growingString = growingString.substring(0, growingString.length - 18);
+        }else{
+          growingString = growingString.substring(0, growingString.length - 1);
+          totalChars--;
+        }
 
-        // If there are characters in the stack, move them to the right.
         if(shrinkingStack!=undefined && shrinkingStack.length != 0){
             shrinkingString = shrinkingStack.pop()+shrinkingString;
         }
@@ -68,25 +81,42 @@ document.addEventListener('keydown', (event) => {
         document.getElementById("typrRight").innerHTML = shrinkingString;
     }
 });
+let seconds_left = 10;
 
-let seconds_left = 60;
+// Score calculation and seting will live here
+calculateScore = function(){
+  // How many characters the user was expected to typ
+  expectedChars = testingText.length-shrinkingString.length;
+
+  wordsPerMinute = totalChars/5;
+  Accuracy = totalChars/expectedChars*100;
+
+  alert("WPM: "+wordsPerMinute+". Accuracy: "+Accuracy);
+}
+
+// Resets the test, as the name implies. Will also need to repopulate text, eventually
+resetTest = function(){
+  alert(totalChars/5+" WPM");
+  shrinkingString = testingText;
+  shrinkingStack = [];
+  growingString = "";
+  totalChars=0;
+  seconds_left = 60;
+  testing = false;
+  clearInterval(timerInterval);
+  document.getElementById("typrLeft").innerHTML  = growingString;
+  document.getElementById("typrRight").innerHTML = shrinkingString;
+}
 
 //Counts down the seconds from 60
 function timer() {
     seconds_left--;
 
     //reset test when timer runs out
-    if(seconds_left==0){
-      alert(totalChars/4+" WPM");
-      shrinkingString = testingText;
-      shrinkingStack = [];
-      growingString = "";
-      totalChars=0;
-      seconds_left = 60;
-      testing = false;
-      clearInterval(timerInterval);
-      document.getElementById("typrLeft").innerHTML  = growingString;
-      document.getElementById("typrRight").innerHTML = shrinkingString;
+    if(seconds_left<=0){
+      // Must be called in this order
+      calculateScore();
+      resetTest();
     }
 
     document.getElementById("timer").innerHTML = seconds_left;
