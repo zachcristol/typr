@@ -1,5 +1,20 @@
 
 
+// let testJson = '{"name":"John", "age":31, "city":"New York"}';
+// let testobj = JSON.parse(testJson)
+// console.log('thing', testobj['name']);
+
+// var json = require('./data.json');
+
+
+
+
+// $.getJSON("allwords.json", function(json) {
+//     console.log(json); // this will show the info it in firebug console
+// });
+
+
+
 
 let growingString = "";
 
