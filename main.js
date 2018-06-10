@@ -6,9 +6,6 @@
 
 // var json = require('./data.json');
 
-
-
-
 // $.getJSON("allwords.json", function(json) {
 //     console.log(json); // this will show the info it in firebug console
 // });
@@ -58,6 +55,21 @@ window.onload = function() {
 
 var timerInterval;
 
+// Called when the user hits space in the middle of the word. Counts the rest of the word wrong.
+function jumpToNextWord() {
+  // Go until a space is found
+  while(shrinkingString[0]!=" "){
+    growingString += shrinkingString[0].strike();
+    shrinkingStack.push(shrinkingString[0]);
+    shrinkingString = shrinkingString.substring(1, shrinkingString.length);
+  }
+
+  // Move the space over, so the user starts on the new word, but don't strike it through.
+  growingString += shrinkingString[0];
+  shrinkingStack.push(shrinkingString[0]);
+  shrinkingString = shrinkingString.substring(1, shrinkingString.length);
+}
+
 document.addEventListener('keypress', (event) => {
     if(!testing){
       testing = true;
@@ -81,14 +93,19 @@ document.addEventListener('keypress', (event) => {
         }
         // Otherwise, strike it through.
         else{
-          growingString += shrinkingString[0].strike();
-
-          if(shrinkingString[0]!=undefined){
-              shrinkingStack.push(shrinkingString[0]);
+          // if the user hits space, jump to the next lineo';'opportunity'
+          if(event.charCode == 32){
+            jumpToNextWord();
           }
+          else{
+            growingString += shrinkingString[0].strike();
 
-          // Shorten the string on the right
-          shrinkingString = shrinkingString.substring(1, shrinkingString.length);
+            if(shrinkingString[0]!=undefined){
+                shrinkingStack.push(shrinkingString[0]);
+            }
+
+            shrinkingString = shrinkingString.substring(1, shrinkingString.length);
+          }
         }
 
         document.getElementById("typrLeft").innerHTML = growingString;
@@ -108,6 +125,7 @@ document.addEventListener('keydown', (event) => {
           totalChars--;
         }
 
+        // If there are letters in the stack, push them
         if(shrinkingStack!=undefined && shrinkingStack.length != 0){
             shrinkingString = shrinkingStack.pop()+shrinkingString;
         }
@@ -116,7 +134,8 @@ document.addEventListener('keydown', (event) => {
         document.getElementById("typrRight").innerHTML = shrinkingString;
     }
 });
-let seconds_left = 10;
+
+let seconds_left = 60;
 
 // Score calculation and seting will live here
 calculateScore = function(){
