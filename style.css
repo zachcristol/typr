@@ -7,6 +7,8 @@ body{
   position: relative;
   width: 100%;
   height: 100px;
+  background-color: darkgrey;
+  /* border: black 2px solid; */
 }
 #leftTyprDiv {
   display: inline;
@@ -26,7 +28,7 @@ body{
   white-space: pre;
   font-size: 2em;
   width: 2100%;
-  color: grey;
+  color: #5900b3;
   position: absolute;
   text-overflow: clip;
   text-align: right;
@@ -34,20 +36,55 @@ body{
 #typrRight {
   font-size: 2em;
   width: 100%;
-  color: black;
+  color: white;
   overflow: hidden;
   white-space: pre;
 }
-#timer {
-  text-align: center;
-  display: block;
-  color: grey;
-  font-size: 2em;
-  width: 100%;
+#typrWrapper{
 }
 #UI-Wrapper{
-  height: 25px;
+  padding-top: 70px;
+  vertical-align :middle;
+  height: 225px;
+  background-color: #5900b3;
 }
-#typrWrapper{
-
+#timerDiv{
+  width: 33%;
+  float: left;
+  text-align: center;
+  color: Gainsboro;
+  font-size: 2em;
+}
+#timer {
+  margin-top: -20px;
+  font-size: 1.2em;
+}
+#WPMDiv{
+  width: 33%;
+  float: left;
+  text-align: center;
+  color: Gainsboro;
+  font-size: 2em;
+}
+#WPM {
+  margin-top: -20px;
+  font-size: 1.2em;
+}
+#accuracyDiv{
+  width: 33%;
+  float: left;
+  text-align: center;
+  color: Gainsboro;
+  font-size: 2em;
+}
+#accuracy {
+  margin-top: -20px;
+  font-size: 1.2em;
+}
+#below-wrapper{
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background-color: #5900b3;
 }
