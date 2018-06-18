@@ -150,7 +150,6 @@ calculateScore = function(){
 
 // Resets the test, as the name implies. Will also need to repopulate text, eventually
 resetTest = function(){
-  alert(totalChars/5+" WPM");
   shrinkingString = testingText;
   shrinkingStack = [];
   wordsUsed = []; //reset words used to nothing
@@ -159,6 +158,7 @@ resetTest = function(){
   seconds_left = 60;
   testing = false;
   clearInterval(timerInterval);
+  document.getElementById("timer").innerHTML = seconds_left;
   document.getElementById("typrLeft").innerHTML  = growingString;
   document.getElementById("typrRight").innerHTML = shrinkingString;
 }
@@ -167,20 +167,12 @@ resetTest = function(){
 function timer() {
     seconds_left--;
 
+    document.getElementById("timer").innerHTML = seconds_left;
+
     //reset test when timer runs out
     if(seconds_left<=0){
       // Must be called in this order
       calculateScore();
       resetTest();
     }
-
-    document.getElementById("timer").innerHTML = seconds_left;
 }
-
-
-
-
-
-
-
-
