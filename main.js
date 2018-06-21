@@ -158,6 +158,8 @@ resetTest = function(){
   seconds_left = 60;
   testing = false;
   clearInterval(timerInterval);
+
+  document.getElementById("WPM").innerHTML = 0;
   document.getElementById("timer").innerHTML = seconds_left;
   document.getElementById("typrLeft").innerHTML  = growingString;
   document.getElementById("typrRight").innerHTML = shrinkingString;
@@ -167,6 +169,10 @@ resetTest = function(){
 function timer() {
     seconds_left--;
 
+    expectedChars = testingText.length-shrinkingString.length;
+
+    document.getElementById("WPM").innerHTML = (60*(totalChars/5/(60-seconds_left))).toPrecision(2);
+    document.getElementById("accuracy").innerHTML = (totalChars/expectedChars).toPrecision(2)*100;
     document.getElementById("timer").innerHTML = seconds_left;
 
     //reset test when timer runs out
